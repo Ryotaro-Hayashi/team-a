@@ -1,8 +1,23 @@
 {% extends "layout.html" %}
 {% block content %}
+<div style="text-align:center; padding: 100px 100px 150px 100px; margin:200px; background:#00AA00;">
 
+  <h2 style="margin:20px;">あなたは、ゴリラです！！🦍</h2>
+<h3>ウホッ</h3>
     <div>
-      <img src="{{path}}" alt="画像" style="margin-top: 10px; vertical-align: bottom; width: 200px;">
+      <img src="{{path}}" alt="画像" style="position:relative; margin-top: 10px; vertical-align: bottom; width: 200px;">
     </div>
+    </div>
+
+    <style>
+      h3{
+        transform: rotate(15deg);
+        -moz-transform: rotate(15deg);
+        -webkit-transform: rotate(15deg);
+        position:absolute;
+        top:420px;
+        left:350px;
+      }
+      </style>
 
 {% endblock %}
