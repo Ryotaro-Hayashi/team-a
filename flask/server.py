@@ -1,14 +1,14 @@
 import os
 import random
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory, session
-#from werkzeug import secure_filename
+from flask import Flask, render_template, request, redirect
+
 
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
 ALLOWED_EXTENSIONS = set([ 'png', 'jpg', 'jpeg', 'JPG'])
-UPLOAD_FOLDER = './images'
+UPLOAD_FOLDER = './static/images'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
@@ -16,15 +16,17 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def hello():
     return render_template("index.html")
 
+
 @app.route('/upload', methods=['GET','POST'])
 def result():
+
  if request.method == 'POST':
         img_file = request.files['image']
         if img_file:
             filename="result.jpg"
             img_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
-            return  render_template('result.html')
+            path=os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            return  render_template('result.html',path=path)
         else:
             return ''' <p>許可されていない拡張子です</p> '''
  else:
