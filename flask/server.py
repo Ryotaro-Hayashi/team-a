@@ -1,6 +1,7 @@
 import os
 import random
 from flask import Flask, render_template, request, redirect
+import time
 
 
 
@@ -23,7 +24,7 @@ def result():
  if request.method == 'POST':
         img_file = request.files['image']
         if img_file:
-            filename="result.jpg"
+            filename="graph" + str(time.time()) + ".jpg"
             img_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             path=os.path.join(app.config['UPLOAD_FOLDER'], filename)
             return  render_template('result.html',path=path)
