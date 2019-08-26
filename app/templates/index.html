@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+<br>
+<form action="/upload" method="post" enctype="multipart/form-data">
+  <label>
+  <input type="file" class="img" style="font-size:15px;" name="image" value="ファイルを選択" accept="image/JPG, image/jpg">
+</label>
+  <br><br>
+  <button type="submit" class>決定</button>
+</form>
+
+<style>
+label {
+color: white;
+background-color: green;
+padding: 10px;
+border: double 4px white;
+}
+  button{
+    border-radius: 5px;
+    border:1px solid black;
+    padding:5px 100px;
+    background:yellow;
+  }
+  </style>
+
+{% endblock %}
