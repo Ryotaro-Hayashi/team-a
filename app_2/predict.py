@@ -86,9 +86,20 @@ def result():
 
                 backend.clear_session()
 
+                for j in range(3):
+                    if j==0:
+                           label_1=label[j]
+                           img_1=img_pred[0][j]
+                    elif j==1:
+                           label_2=label[j]
+                           img_2=img_pred[0][j]
+                    else :
+                           label_3=label[j]
+                           img_3=img_pred[0][j]
+
             #plt.show()
             #
-            return  render_template('result.html',path=path,label=label[np.argmax(img_pred)])
+            return  render_template('result.html',path=path,label_1=label_1,label_2=label_2,label_3=label_3,img_1=img_1,img_2=img_2,img_3=img_3)
         else:
             return ''' <p>許可されていない拡張子です</p> '''
  else:
