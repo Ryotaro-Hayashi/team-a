@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import os,random
 from keras.preprocessing.image import img_to_array, load_img
 from keras.backend import tensorflow_backend as backend
-
+import cv2
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -35,13 +35,12 @@ def result():
         if img_file:
             filename="graph" + str(time.time()) + ".jpg"
             img_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            path=os.path.join(app.config['UPLOAD_FOLDER'], filename)
-
+           
             #処理
             file_name='monkey'
             display_dir='static'
             images='images'
-            label=['chimpanzee','gorilla','orangutan']
+            label=['chimpanzee','gorilla','monkey']
 
             N_CATEGORIES  = 3
             IMAGE_SIZE = 224
@@ -67,6 +66,30 @@ def result():
 
             files=os.listdir(display_dir)
 
+
+
+            # 画像の読み込み
+            image_gs = cv2.imread('static/images/'+filename)
+
+            # 顔認識用特徴量ファイルを読み込む --- （カスケードファイルのパスを指定）
+            cascade = cv2.CascadeClassifier("./haarcascade_frontalface_alt.xml")
+            #判定！
+            face = cascade.detectMultiScale(image_gs,scaleFactor=1.1,minNeighbors=1,minSize=(10,10))
+
+            #print (type(face))
+            #print (face)
+
+            if isinstance(face,np.ndarray):
+                filename='cut_'+filename
+                for x,y,w,h in face:
+                    face_cut = image_gs[y:y+h, x:x+w]
+                    #切り抜き保存！    
+                    cv2.imwrite('static/images/'+filename, face_cut)
+
+        
+    
+    
+           
 
             plt.figure(figsize=(10,10)) #場所？
 
@@ -120,6 +143,7 @@ def result():
 
 
 
+            path=os.path.join(app.config['UPLOAD_FOLDER'], filename)
 
             return  render_template('result.html',path=path,label_1=label_1,label_2=label_2,label_3=label_3,img_1=img_1,img_2=img_2,img_3=img_3)
         else:
