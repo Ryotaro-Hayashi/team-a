@@ -1,0 +1,15 @@
+
+#ドライブをマウントさせる
+from google.colab import drive
+drive.mount('/content/drive')
+
+#ngrok（生成されるURLはまだ長くしてない）
+!wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+!unzip ngrok-stable-linux-amd64.zip
+
+get_ipython().system_raw('./ngrok http 6006 &')
+! curl -s http://localhost:4040/api/tunnels | python3 -c \
+    "import sys, json; print(json.load(sys.stdin)['tunnels'][0]['public_url'])"
+
+#predict.py実行
+!python predict.py
