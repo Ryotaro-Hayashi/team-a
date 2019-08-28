@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script><!--CDNでの読みこみ-->
     <div>
       <img src=".{{path}}" alt="画像" style="margin-top: 10px; vertical-align: bottom; width: 200px;">
     </div>
@@ -10,6 +10,67 @@
     {{img_2}}%<br>
     {{label_3}}
     {{img_3}}%<br>
+    <canvas id="myChart" width="400" height="400"></canvas> <!--グラフ-->
     <a href="/dfg4s4dfg4sdf54g545df4sgsdfg6sd5fgs">最初に戻る</a>
+
+    <!--ここからグラフの設定-->
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');//グラフの形
+
+var myChart = new Chart(ctx, {
+  type: 'doughnut',//グラフの形
+  data: {
+      labels: ['{{label_1}}', '{{label_2}}', '{{label_3}}'],/*ラベル*/
+      datasets: [{
+        data: ['{{img_1}}','{{img_2}}','{{img_3}}'], /*ここにそれぞれの％を入れる*/
+        backgroundColor: [
+          'rgba(255, 255, 0)',/*1番のカラー*/
+          'rgba(0, 255, 255)',/*2番のカラー*/
+          'rgba(255, 0, 255)',/*3番のカラー*/
+        ],
+      }]
+  },
+  options: {
+    legend: {
+      onClick: function () { return false } //凡例クリックによるグラフの非表示を無効化
+    },
+    responsive: false, //横幅の大きさを固定(レスポンシブを無効可)
+    maintainAspectRatio: false //縦幅の大きさを固定(レスポンシブを無効可)
+},
+});
+
+// 〇 ラベルの％表示ここから
+Chart.plugins.register({
+  afterDatasetsDraw: function (chart, easing) {
+      var ctx = chart.ctx;
+
+      chart.data.datasets.forEach(function (dataset, i) {
+          var meta = chart.getDatasetMeta(i);
+          if (!meta.hidden) {
+              meta.data.forEach(function (element, index) {
+                  ctx.fillStyle = 'rgb(0, 0, 0)'; //％のカラー
+
+                  var fontSize = 20; //文字の大きさ
+                  var fontStyle = 'normal'; //文字のスタイル
+                  var fontFamily = 'Comic Sans MS'; //文字のフォント
+                  ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+
+                  var dataString = dataset.data[index].toString();
+
+                  ctx.textAlign = 'center';
+                  ctx.textBaseline = 'middle';
+
+                  var padding = 5;
+                  var position = element.tooltipPosition();
+                  ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+              });
+          }
+      });
+  }
+});
+// 〇 ここまで
+
+</script>
+    <!--ここまで-->
 
 {% endblock %}
