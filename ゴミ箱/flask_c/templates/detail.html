@@ -1,16 +1,29 @@
 {% extends "layout.html" %}
 {% block content %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script><!--CDNでの読みこみ-->
-    <div>
-      <img src=".{{path}}" alt="画像" style="margin-top: 10px; vertical-align: bottom; width: 200px;">
+
+    <div class="img_top">
+      <img src=".{{path}}" alt="画像" style="vertical-align: bottom; width: 200px;">
     </div>
-    {{label_1}}
-    {{img_1}}%<br>
-    {{label_2}}
-    {{img_2}}%<br>
-    {{label_3}}
-    {{img_3}}%<br>
-    <canvas id="myChart" width="400" height="400"></canvas> <!--グラフ-->
+
+    <div class="box26">
+      <span class="box-title">詳細グラフ</span>
+      <p>
+        <a class="rank">
+          ♛1♛ {{label_1}}
+          {{img_1}}%<br><br>
+          --2-- {{label_2}}
+          {{img_2}}%<br><br>
+          --3-- {{label_3}}
+          {{img_3}}%<br>
+        </a>
+        <a　class="data">
+          <canvas id="myChart" width="300" height="300"></canvas> <!--グラフ-->
+        </a>
+
+      </p>
+    </div>
+
     <a href="/dfg4s4dfg4sdf54g545df4sgsdfg6sd5fgs">最初に戻る</a>
 
     <!--ここからグラフの設定-->
@@ -72,5 +85,47 @@ Chart.plugins.register({
 
 </script>
     <!--ここまで-->
+
+    <style>
+    .img_top{
+
+      text-align:center;
+    }
+
+    .box26 {
+      width: 700px;
+      position: relative;
+      margin: 2em 0;
+      padding: 0.5em 1em;
+      border: solid 3px #008000;
+      border-radius: 8px;
+      margin:10 auto;
+    }
+    .box26 .box-title {
+      position: absolute;
+      display: inline-block;
+      width: 200px;
+      top: -13px;
+      left: 10px;
+      padding: 0 9px;
+      line-height: 1;
+      font-size: 19px;
+      background: #FFF;
+      color: #008000;
+      font-weight: bold;
+
+    }
+    .box26 p {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    .rank{
+      display: flex;
+      align-items: center;
+    }
+
+    </style>
 
 {% endblock %}
