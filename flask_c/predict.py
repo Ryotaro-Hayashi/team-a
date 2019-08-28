@@ -12,7 +12,9 @@ import matplotlib.pyplot as plt
 import os,random
 from keras.preprocessing.image import img_to_array, load_img
 from keras.backend import tensorflow_backend as backend
-import cv2
+import random
+import string
+
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -22,12 +24,18 @@ UPLOAD_FOLDER = './static/images'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
-@app.route("/")
+@app.route("/dfg4s4dfg4sdf54g545df4sgsdfg6sd5fgs")
 def hello():
     return render_template("index.html")
 
 
-@app.route('/upload', methods=['GET','POST'])
+@app.route("/sdfsdfasls546465ASDFAD545asdffasdlk")
+def detail():
+
+    return render_template("detail.html",path=path,label_1=label_1,label_2=label_2,label_3=label_3,img_1=img_1,img_2=img_2,img_3=img_3)
+
+
+@app.route('/dfg4s4dfg4sdf54g545df4sgsdfg6sd5fgs/upload', methods=['GET','POST'])
 def result():
 
  if request.method == 'POST':
@@ -35,12 +43,14 @@ def result():
         if img_file:
             filename="graph" + str(time.time()) + ".jpg"
             img_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-           
+            global path
+            path=os.path.join(app.config['UPLOAD_FOLDER'], filename)
+
             #処理
             file_name='monkey'
             display_dir='static'
             images='images'
-            label=['chimpanzee','gorilla','monkey']
+            label=['chimpanzee','gorilla','orangutan']
 
             N_CATEGORIES  = 3
             IMAGE_SIZE = 224
@@ -67,30 +77,6 @@ def result():
             files=os.listdir(display_dir)
 
 
-
-            # 画像の読み込み
-            image_gs = cv2.imread('static/images/'+filename)
-
-            # 顔認識用特徴量ファイルを読み込む --- （カスケードファイルのパスを指定）
-            cascade = cv2.CascadeClassifier("./haarcascade_frontalface_alt.xml")
-            #判定！
-            face = cascade.detectMultiScale(image_gs,scaleFactor=1.1,minNeighbors=1,minSize=(10,10))
-
-            #print (type(face))
-            #print (face)
-
-            if isinstance(face,np.ndarray):
-                filename='cut_'+filename
-                for x,y,w,h in face:
-                    face_cut = image_gs[y:y+h, x:x+w]
-                    #切り抜き保存！    
-                    cv2.imwrite('static/images/'+filename, face_cut)
-
-        
-    
-    
-           
-
             plt.figure(figsize=(10,10)) #場所？
 
             for i in range(1):
@@ -109,12 +95,15 @@ def result():
 
                 backend.clear_session()
 
+                global img_1,img_2,img_3,label_1,label_2,label_3
+
                 label_1=label[0]
                 img_1=round(img_pred[0][0]*100,2)
                 label_2=label[1]
                 img_2=round(img_pred[0][1]*100,2)
                 label_3=label[2]
                 img_3=round(img_pred[0][2]*100,2)
+
 
 
                 if img_2 < img_3:
@@ -143,7 +132,6 @@ def result():
 
 
 
-            path=os.path.join(app.config['UPLOAD_FOLDER'], filename)
 
             return  render_template('result.html',path=path,label_1=label_1,label_2=label_2,label_3=label_3,img_1=img_1,img_2=img_2,img_3=img_3)
         else:
