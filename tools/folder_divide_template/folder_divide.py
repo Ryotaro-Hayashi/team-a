@@ -1,17 +1,3 @@
-"""
-以下に示すようなディレクトリを用意し、tmpフォルダに入っているファイルを、
-trainフォルダ・validationフォルダ配下のtitleディレクトリがなければ作成し、
-収集した画像の80%をtrainフォルダ配下のtitleディレクトリに、
-20%をvalidationフォルダ配下のtitleディレクトリに入れるプログラム
-
-ディレクトリ構造
-　　｜
-    |ーーtmp
-　　｜ーーtrain
-　　｜－－validation
-　　｜－－folder_divide.py
-"""
-
 import os
 import shutil
 import glob

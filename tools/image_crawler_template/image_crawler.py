@@ -1,17 +1,3 @@
-"""
-以下に示すようなディレクトリを用意し、searchwordsに対応する画像をimagenum枚、
-Googleから収集してtmpフォルダに保存し、trainフォルダ・validationフォルダ配下に
-titleディレクトリがなければ作成し、収集した画像の80%をtrainフォルダ配下のtitleディレクトリに、
-20%をvalidationフォルダ配下のtitleディレクトリに入れるプログラム
-
-ディレクトリ構造
-　　｜
-    |ーーtmp
-　　｜ーーtrain
-　　｜－－validation
-　　｜－－image_crawler.py
-"""
-
 import os
 import shutil
 import glob
