@@ -1,6 +1,32 @@
 {% extends "layout.html" %}
 {% block content %}
 <br>
+
+<div class="image_all">
+  <div class="saru">
+  <img src="./static/images/saru.png" alt="saru">
+  <p><b>サル</b></p>
+  </div>
+  <div class="gojilla">
+  <img src="./static/images/gorilla.png" alt="gorilla">
+  <p><b>ゴリラ</b></p>
+  </div>
+  <div class="chimpanzee">
+  <img src="./static/images/chimpanzee.png" alt="chimpanzee">
+  <p><b>チンパンジー</b></p>
+  </div>
+</div>
+
+
+
+<hr class="line_1">
+<div class="comment">
+  <p class=comment_text>あとで文章をいれます。あとで文章をいれます。あとで文章をいれます。あとで文章をいれます。
+  あとで文章をいれます。あとで文章をいれます。あとで文章をいれます。あとで文章をいれます。あとで文章をいれます。
+あとで文章をいれます。あとで文章をいれます。あとで文章をいれます。あとで文章をいれます。</p>
+  </div>
+<hr class="line_2">
+
 <form action="/dfg4s4dfg4sdf54g545df4sgsdfg6sd5fgs/upload" method="post" enctype="multipart/form-data">
   <label>
   <input type="file" class="img" style="font-size:15px;" name="image" value="ファイルを選択" accept="image/JPG, image/jpg">
@@ -10,9 +36,36 @@
 </form>
 
 <style>
+  img{
+    width:50%;
+    height:50%;
+    margin:5px 0;
+    padding:0;
+  }
+  .image_all{
+    display:flex;
+    text-align:center;
+    margin:0 200px;
+  }
+  .saru .gorilla .chimpanzee{
+    display:flex clear;
+    margin:0;
+    padding:0;
+  }
+
+  .line_1{
+    margin:5px 0 20px 0;
+  }
+  .line_2{
+    margin:20px 0 45px 0;
+  }
+  .comment{
+    padding:5px 30px;
+    margin:0 150px;
+  }
 label {
 color: white;
-background-color: green;
+background-color: #008000;
 padding: 10px;
 border: double 4px white;
 }
@@ -20,10 +73,10 @@ border: double 4px white;
     border-radius: 5px;
     border:1px solid black;
     padding:5px 100px;
-    background:yellow;
+    background:silver;
   }
   button:hover{
-    background:silver;
+    background:gray;
   }
   </style>
 
