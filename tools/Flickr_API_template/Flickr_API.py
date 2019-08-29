@@ -1,13 +1,3 @@
-"""
-以下に示すようなディレクトリを用意し、 python Flickr_API.py 検索名　というコマンドを実行すると
-検索名フォルダにFlickrから取得した画像を保存するプログラム。コマンドの検索名と作るフォルダ名は一致させる。
-
-ディレクトリ構造
-　　｜
-    |ーー検索名
-　　｜－－Flickr_API.py
-"""
-
 from flickrapi import FlickrAPI
 from urllib.request import urlretrieve
 from pprint import pprint
