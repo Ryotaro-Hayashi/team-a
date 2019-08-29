@@ -73,7 +73,7 @@ def result():
             file_name='monkey'
             display_dir='static'
             images='images'
-            label=['chimpanzee','gorilla','orangutan']
+            label=['チンパンジー','ゴリラ','サル']
 
             N_CATEGORIES  = 3
             IMAGE_SIZE = 224
