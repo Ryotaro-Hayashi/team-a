@@ -1,4 +1,3 @@
-"""
 以下に示すようなディレクトリを用意し、tmpフォルダに入っているファイルを、
 trainフォルダ・validationフォルダ配下のtitleディレクトリがなければ作成し、
 収集した画像の80%をtrainフォルダ配下のtitleディレクトリに、
@@ -10,4 +9,3 @@ trainフォルダ・validationフォルダ配下のtitleディレクトリがな
 　　｜ーーtrain
 　　｜－－validation
 　　｜－－folder_divide.py
-"""

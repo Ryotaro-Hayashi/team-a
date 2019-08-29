@@ -58,7 +58,7 @@ def max_file_idx(train_dir, valid_dir):
 
 def main(): #使用するたびに引数変える必要あり
     image_num = 120
-    imagecrawl('asian', imagenum=image_num, title='asian')
+    imagecrawl(imagenum=image_num, title='asian')
 
 if __name__ == '__main__':
     main()
