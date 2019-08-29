@@ -15,7 +15,7 @@
           --2-- {{label_2}}
           {{img_2}}%<br><br>
           --3-- {{label_3}}
-          {{img_3}}%<br>
+          {{img_3}}%<br><br>
         </a>
         <a　class="data">
           <canvas id="myChart" width="300" height="300"></canvas> <!--グラフ-->
@@ -52,6 +52,19 @@ var myChart = new Chart(ctx, {
 },
 });
 
+if('{{img_2}}'<=10){
+  var a='';
+}else{
+  var a='{{img_2}}';
+}
+if('{{img_3}}'<=10){
+  var b='';
+}else{
+  var b='{{img_3}}';
+}
+
+var data1 = ['{{img_1}}',a,b];
+
 // 〇 ラベルの％表示ここから
 Chart.plugins.register({
   afterDatasetsDraw: function (chart, easing) {
@@ -68,7 +81,7 @@ Chart.plugins.register({
                   var fontFamily = 'Comic Sans MS'; //文字のフォント
                   ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
 
-                  var dataString = dataset.data[index].toString();
+                  var dataString = data1[index].toString();
 
                   ctx.textAlign = 'center';
                   ctx.textBaseline = 'middle';
