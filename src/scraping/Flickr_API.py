@@ -5,8 +5,8 @@ import os, time, sys
 
 # API キーの情報
 #APIキーはFlickrで取得
-key = "272cfaeacd5d72e4ad8608b1f47158ea" #APIキー
-secret = "2f1ebd1d205f1de0" #secretキー
+key = "b0a3396cc06eedc211a6b7e6930ffbf9" #APIキー
+secret = "809221a760343f2b" #secretキー
 
 wait_time = 1
 
